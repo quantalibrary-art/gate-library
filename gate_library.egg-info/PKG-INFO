@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: gate_library
+Version: 0.1.0
+Summary: Quantized Authorization Gate library for Python
+Author: Justin P Cline
+Author-email: your_email@domain.com
+Requires-Python: >=3.10
+License-File: LICENSE-AGPL
+License-File: LICENSE-COMMERCIAL
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
