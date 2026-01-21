@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Request Your Gate License</title>
+
+    <style>
+
+        body { 
+
+            font-family: Arial, sans-serif; 
+
+            margin: 40px; 
+
+            background: #121212; 
+
+            color: #eee;
+
+        }
+
+        h1, h2 { color: #fff; }
+
+        form { 
+
+            background: #1e1e1e; 
+
+            padding: 20px; 
+
+            border-radius: 10px; 
+
+            max-width: 500px; 
+
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+        }
+
+        input, textarea, button { 
+
+            width: 100%; 
+
+            padding: 10px; 
+
+            margin: 8px 0; 
+
+            border-radius: 5px; 
+
+            border: 1px solid #444; 
+
+            background: #2c2c2c; 
+
+            color: #eee;
+
+        }
+
+        input:focus, textarea:focus { 
+
+            outline: none; 
+
+            border-color: #4CAF50; 
+
+        }
+
+        button { 
+
+            background-color: #4CAF50; 
+
+            color: white; 
+
+            border: none; 
+
+            cursor: pointer; 
+
+            font-weight: bold;
+
+        }
+
+        button:hover { 
+
+            background-color: #45a049; 
+
+        }
+
+        pre { 
+
+            background: #1e1e1e; 
+
+            padding: 10px; 
+
+            border-radius: 5px; 
+
+            border: 1px solid #444; 
+
+            overflow-x: auto;
+
+            color: #0f0;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+<h1>Request Your Gate License</h1>
+<form id="licenseForm"><label for="name">Full Name:</label> <input type="text" required="" /> <label for="email">Email Address:</label> <input type="email" id="email" name="email" required="" /> <label for="use_case">Intended Use Case:</label> <textarea id="use_case" name="use_case" required=""></textarea> <button type="submit">Submit License Request</button></form>
+<h2>Response:</h2>
+<pre id="responseOutput">Your license response will appear here...</pre>
+<p>
+<script>
+
+        const form = document.getElementById('licenseForm');
+
+        const output = document.getElementById('responseOutput');
+
+        form.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/license-request', {
+    method: 'POST',
+    body: formData
+});
+
+             
+
+                    method: 'POST',
+
+                    body: formData
+
+                });
+
+                if (!response.ok) {
+
+                    throw new Error(`Server error: ${response.status}`);
+
+                }
+
+                const data = await response.json();
+
+                output.textContent = JSON.stringify(data, null, 2);
+
+            } catch (err) {
+
+                output.textContent = `Error: ${err.message}`;
+
+            }
+
+        });
+
+    </script>
+</p>
+</body>
+
+</html>

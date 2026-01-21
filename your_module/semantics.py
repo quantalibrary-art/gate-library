@@ -1,12 +1,12 @@
-from enum import Enum, auto
+# your_module/semantics.py
+from enum import Enum
 
-
-class GateDecision(Enum):
+class GateDecision(str, Enum):
     """
-    Semantic authorization outcomes.
-    The gate never executes actions.
+    Semantic decisions for the Gate Library.
+    These are the only valid outcomes when querying the gate.
     """
-    ALLOW = auto()
-    DENY = auto()
-    ESCALATE = auto()
-    UNDEFINED = auto()
+    ALLOW = "allow"
+    DENY = "deny"
+    ESCALATE = "escalate"
+    UNDEFINED = "undefined"
